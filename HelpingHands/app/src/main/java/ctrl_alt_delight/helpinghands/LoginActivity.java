@@ -32,7 +32,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -227,16 +229,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             Toast.makeText(LoginActivity.this, "Could not login, please try again. ",
                                     Toast.LENGTH_LONG).show();
                             mPasswordView.requestFocus();
-                            DatabaseReference myRef = database.getReference(email);
-                            myRef.setValue("");
 
                         } else {
+
+                            DatabaseReference myRef = database.getReference(email.split("@")[0]);
+//                            int time = (int) (System.currentTimeMillis());
+//                            Timestamp tsTemp = new Timestamp(time);
+//                            String ts =  tsTemp.toString();
+//                            HashMap<String, String> map = new HashMap<>();
+//                            map.put("loginTime", Integer.toString((int)System.currentTimeMillis()));
+//                            myRef.setValue(map);
+
                             Toast.makeText(LoginActivity.this, "Authenticated successfully ",
                                     Toast.LENGTH_LONG).show();
                             if (email.equals("email@email.com")) {
+                                myRef.setValue("Student");
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                             } else if (email.equals("advisor@email.com")) {
+                                myRef.setValue("Advisor");
                                 Intent intent = new Intent(LoginActivity.this, AdvisorActivity.class);
                                 startActivity(intent);
                             }
