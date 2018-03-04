@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">HelpingHands@GT</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">GT Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_register">Register</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_register">Register</string>
+    <string name="action_back_to_sign_in">Back to Sign In</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="welcome_message">Welcome Ctrl-Alt-Delight! Today is a good day!</string>
+    <string name="welcome_resources">Here are some great resources you can always reach out to:\n\n
+        GTPD\n
+        STAMPS</string>
+</resources>
