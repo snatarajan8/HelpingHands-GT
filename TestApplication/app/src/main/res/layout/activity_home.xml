@@ -11,7 +11,7 @@
     tools:context="bmawji3.testapplication.HomeActivity">
 
     <Button
-        android:text="Return to Login"
+        android:text="@string/return_to_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
