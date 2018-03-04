@@ -45,6 +45,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A login screen that offers login via email/password.
@@ -52,6 +54,9 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("message");
+
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -210,6 +215,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
+        myRef.setValue("Hello, World!");
+
         if (email.equals("email@email.com")) {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -298,15 +305,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 //            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
 //            startActivity(intent);
 //        }
-    }
-    private boolean isEmailValid(String email) {
-        //TODO
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO
-        return password.length() > 4;
     }
 
     private void register() {
