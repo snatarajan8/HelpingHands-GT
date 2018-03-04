@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_chat:
+
                     mTextMessage.setText(R.string.title_chat);
                     return true;
                 case R.id.navigation_notifications:
@@ -93,6 +95,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }
 
+    }
 }
