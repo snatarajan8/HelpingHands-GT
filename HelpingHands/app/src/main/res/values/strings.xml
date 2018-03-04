@@ -23,4 +23,6 @@
     <string name="welcome_resources">Here are some great resources you can always reach out to:\n\n
         GTPD\n
         STAMPS</string>
+    <string name="title_activity_advisor">AdvisorActivity</string>
+    <string name="title_dashboard">Dashboard</string>
 </resources>
