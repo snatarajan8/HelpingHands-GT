@@ -164,6 +164,18 @@ public class RegisterActivity extends Activity {
     public void createAccount() {
         final String email = mEmailView.getText().toString().trim();
         final String password = mPasswordView.getText().toString().trim();
+
+        if (!isEmailValid(email)) {
+            Toast.makeText(RegisterActivity.this, "Please use a Georgia Tech email ID.",
+                    Toast.LENGTH_SHORT).show();
+            register();
+        } else if (!isPasswordValid(password)) {
+            Toast.makeText(RegisterActivity.this, "Please use a password of at least 6 characters.",
+                    Toast.LENGTH_SHORT).show();
+            register();
+        }
+
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -176,10 +188,11 @@ public class RegisterActivity extends Activity {
                         if (!task.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, "Could not register. Please try again",
                                     Toast.LENGTH_SHORT).show();
-                            signIn();
+                            register();
                         } else {
                             Toast.makeText(RegisterActivity.this, "Registered successfully",
                                     Toast.LENGTH_SHORT).show();
+                            signIn();
                         }
                     }
                 });
@@ -190,5 +203,19 @@ public class RegisterActivity extends Activity {
         startActivity(intent);
     }
 
+    private void register() {
+        Intent intent = new Intent(RegisterActivity.this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO
+        return email.contains("@gatech.edu");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO
+        return password.length() > 6;
+    }
 }
 
