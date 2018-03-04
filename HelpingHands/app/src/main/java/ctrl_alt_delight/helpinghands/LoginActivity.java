@@ -210,10 +210,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
 
-        /*
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -231,14 +228,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         } else {
                             Toast.makeText(LoginActivity.this, "Authenticated successfully ",
                                     Toast.LENGTH_LONG).show();
-                            //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            //startActivity(intent);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
                         }
 
                         // ...
                     }
         });
-        */
+
 
         /*
         // Check for a valid password, if the user entered one.
