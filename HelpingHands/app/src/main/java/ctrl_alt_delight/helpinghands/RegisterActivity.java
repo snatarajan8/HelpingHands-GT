@@ -50,52 +50,6 @@ import static android.content.ContentValues.TAG;
  */
 public class RegisterActivity extends Activity {
 
-
-
-
-//    /**
-//     * Keep track of the login task to ensure we can cancel it if requested.
-//     */
-//    private UserLoginTask mAuthTask = null;
-//
-//    // UI references.
-//    private AutoCompleteTextView mEmailView;
-//    private EditText mPasswordView;
-//    private View mProgressView;
-//    private View mLoginFormView;
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_register);
-//        // Set up the login form.
-//        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-//        populateAutoComplete();
-//
-//        mPasswordView = (EditText) findViewById(R.id.password);
-//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-//                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-//                    attemptLogin();
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
-//
-//        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-//        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                attemptLogin();
-//            }
-//        });
-//
-//        mLoginFormView = findViewById(R.id.login_form);
-//        mProgressView = findViewById(R.id.login_progress);
-//    }
-
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText mPasswordView;
@@ -173,29 +127,29 @@ public class RegisterActivity extends Activity {
             Toast.makeText(RegisterActivity.this, "Please use a password of at least 6 characters.",
                     Toast.LENGTH_SHORT).show();
             register();
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+
+                            // If sign in fails, display a message to the user. If sign in succeeds
+                            // the auth state listener will be notified and logic to handle the
+                            // signed in user can be handled in the listener.
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(RegisterActivity.this, "Could not register. Please try again",
+                                        Toast.LENGTH_SHORT).show();
+                                register();
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Registered successfully",
+                                        Toast.LENGTH_SHORT).show();
+                                signIn();
+                            }
+                        }
+                    });
         }
 
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "Could not register. Please try again",
-                                    Toast.LENGTH_SHORT).show();
-                            register();
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Registered successfully",
-                                    Toast.LENGTH_SHORT).show();
-                            signIn();
-                        }
-                    }
-                });
     }
 
     private void signIn() {

@@ -55,8 +55,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("message");
-
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -212,100 +210,68 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        final String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        myRef.setValue("Hello, World!");
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
-        if (email.equals("email@email.com")) {
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInWithEmail:failed", task.getException());
+                            Toast.makeText(LoginActivity.this, "Could not login, please try again. ",
+                                    Toast.LENGTH_LONG).show();
+                            mPasswordView.requestFocus();
+                            DatabaseReference myRef = database.getReference(email);
+                            myRef.setValue("");
 
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
-                            if (!task.isSuccessful()) {
-                                Log.w(TAG, "signInWithEmail:failed", task.getException());
-                                Toast.makeText(LoginActivity.this, "Could not login, please try again. ",
-                                        Toast.LENGTH_LONG).show();
-                                mPasswordView.requestFocus();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Authenticated successfully ",
-                                        Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Authenticated successfully ",
+                                    Toast.LENGTH_LONG).show();
+                            if (email.equals("email@email.com")) {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
-                            }
-
-                            // ...
-                        }
-                    });
-        } else if (email.equals("advisor@email.com")) {
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
-                            if (!task.isSuccessful()) {
-                                Log.w(TAG, "signInWithEmail:failed", task.getException());
-                                Toast.makeText(LoginActivity.this, "Could not login, please try again. ",
-                                        Toast.LENGTH_LONG).show();
-                                mPasswordView.requestFocus();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Authenticated successfully ",
-                                        Toast.LENGTH_LONG).show();
+                            } else if (email.equals("advisor@email.com")) {
                                 Intent intent = new Intent(LoginActivity.this, AdvisorActivity.class);
                                 startActivity(intent);
                             }
-
-                            // ...
                         }
-                    });
-        }
 
-
-
-        /*
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-        */
-
-//        if (cancel) {
-//            // There was an error; don't attempt login and focus the first
-//            // form field with an error.
-//            mPasswordView.requestFocus();
-//        } else {
-//            // Show a progress spinner, and kick off a background task to
-//            // perform the user login attempt.
-//            showProgress(true);
-//            mAuthTask = new UserLoginTask(email, password);
-//            mAuthTask.execute((Void) null);
-//
-//            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//            startActivity(intent);
-//        }
+                        // ...
+                    }
+                });
     }
+//        } else if (email.equals("advisor@email.com")) {
+//            mAuth.signInWithEmailAndPassword(email, password)
+//                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+//
+//                            // If sign in fails, display a message to the user. If sign in succeeds
+//                            // the auth state listener will be notified and logic to handle the
+//                            // signed in user can be handled in the listener.
+//                            if (!task.isSuccessful()) {
+//                                Log.w(TAG, "signInWithEmail:failed", task.getException());
+//                                Toast.makeText(LoginActivity.this, "Could not login, please try again. ",
+//                                        Toast.LENGTH_LONG).show();
+//                                mPasswordView.requestFocus();
+//                            } else {
+//                                Toast.makeText(LoginActivity.this, "Authenticated successfully ",
+//                                        Toast.LENGTH_LONG).show();
+//                                Intent intent = new Intent(LoginActivity.this, AdvisorActivity.class);
+//                                startActivity(intent);
+//                            }
+//
+//                            // ...
+//                        }
+//                    });
+//        }
 
     private void register() {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
