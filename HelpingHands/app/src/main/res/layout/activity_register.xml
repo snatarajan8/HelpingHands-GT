@@ -62,6 +62,27 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <RadioGroup
+                android:id="@+id/register_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/register_radio_student"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/radio_button_student" />
+
+                <RadioButton
+                    android:id="@+id/register_radio_advisor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="@string/radio_button_advisor" />
+
+            </RadioGroup>
+
             <Button
                 android:id="@+id/email_register_button"
                 style="?android:textAppearanceSmall"

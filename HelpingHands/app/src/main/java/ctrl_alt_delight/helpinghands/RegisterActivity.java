@@ -30,6 +30,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,12 +56,18 @@ public class RegisterActivity extends Activity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText mPasswordView;
     private EditText mEmailView;
+    RadioGroup radioGroup;
+    RadioButton studentRadio;
+    RadioButton advisorRadio
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        radioGroup = (RadioGroup) findViewById(R.id.register_radio_group);
+        studentRadio = (RadioButton) findViewById(R.id.register_radio_student);
+        advisorRadio = (RadioButton) findViewById(R.id.register_radio_advisor);
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
         Button registerButton = (Button) findViewById(R.id.email_register_button);

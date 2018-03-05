@@ -25,4 +25,6 @@
         STAMPS</string>
     <string name="title_activity_advisor">AdvisorActivity</string>
     <string name="title_dashboard">Dashboard</string>
+    <string name="radio_button_student">Student</string>
+    <string name="radio_button_advisor">Advisor</string>
 </resources>
