@@ -40,6 +40,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +60,8 @@ public class RegisterActivity extends Activity {
     private EditText mEmailView;
     RadioGroup radioGroup;
     RadioButton studentRadio;
-    RadioButton advisorRadio
+    RadioButton advisorRadio;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +129,7 @@ public class RegisterActivity extends Activity {
     public void createAccount() {
         final String email = mEmailView.getText().toString().trim();
         final String password = mPasswordView.getText().toString().trim();
+        final DatabaseReference myRef = database.getReference(email.split("@")[0]);
 
         if (!isEmailValid(email)) {
             Toast.makeText(RegisterActivity.this, "Please use a Georgia Tech email ID.",
@@ -150,8 +154,15 @@ public class RegisterActivity extends Activity {
                                         Toast.LENGTH_SHORT).show();
                                 register();
                             } else {
+//                                Toast.makeText(RegisterActivity.this, "Registered successfully",
+//                                        Toast.LENGTH_SHORT).show();
                                 Toast.makeText(RegisterActivity.this, "Registered successfully",
                                         Toast.LENGTH_SHORT).show();
+//                                if (radioGroup.getCheckedRadioButtonId() == 1) {
+//                                    myRef.setValue("Adviser");
+//                                } else {
+//                                    myRef.setValue("Student");
+//                                }
                                 signIn();
                             }
                         }
