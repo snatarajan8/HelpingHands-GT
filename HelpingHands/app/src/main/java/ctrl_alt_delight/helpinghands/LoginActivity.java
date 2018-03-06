@@ -47,8 +47,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A login screen that offers login via email/password.
@@ -242,15 +245,42 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                             Toast.makeText(LoginActivity.this, "Authenticated successfully ",
                                     Toast.LENGTH_LONG).show();
-                            if (email.equals("email@email.com")) {
-                                myRef.setValue("Student");
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            } else if (email.equals("advisor@email.com")) {
-                                myRef.setValue("Advisor");
-                                Intent intent = new Intent(LoginActivity.this, AdvisorActivity.class);
-                                startActivity(intent);
-                            }
+                            ValueEventListener postListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    // Get Post object and use the values to update the UI
+
+                                    if (dataSnapshot.getValue().equals("Student")){
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                        Toast.makeText(LoginActivity.this, "Student",
+//                                                Toast.LENGTH_LONG).show();
+                                        startActivity(intent);
+                                    } else {
+//                                        Toast.makeText(LoginActivity.this, "Adviser",
+//                                                Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(LoginActivity.this, AdvisorActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    // ...
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    // Getting Post failed, log a message
+                                    Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                                    // ...
+                                }
+                            };
+                            myRef.addListenerForSingleValueEvent(postListener);
+//                            if (email.equals("email@email.com")) {
+//                                myRef.setValue("Student");
+//                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                startActivity(intent);
+//                            } else if (email.equals("advisor@email.com")) {
+//                                myRef.setValue("Advisor");
+//                                Intent intent = new Intent(LoginActivity.this, AdvisorActivity.class);
+//                                startActivity(intent);
+//                            }
                         }
 
                         // ...
