@@ -60,7 +60,7 @@ public class RegisterActivity extends Activity {
     private EditText mEmailView;
     RadioGroup radioGroup;
     RadioButton studentRadio;
-    RadioButton advisorRadio;
+    RadioButton adviserRadio;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
@@ -70,7 +70,7 @@ public class RegisterActivity extends Activity {
 
         radioGroup = (RadioGroup) findViewById(R.id.register_radio_group);
         studentRadio = (RadioButton) findViewById(R.id.register_radio_student);
-        advisorRadio = (RadioButton) findViewById(R.id.register_radio_advisor);
+        adviserRadio = (RadioButton) findViewById(R.id.register_radio_advisor);
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
         Button registerButton = (Button) findViewById(R.id.email_register_button);
@@ -163,6 +163,11 @@ public class RegisterActivity extends Activity {
 //                                } else {
 //                                    myRef.setValue("Student");
 //                                }
+                                if (adviserRadio.isChecked()) {
+                                    myRef.setValue("Adviser");
+                                } else if (studentRadio.isChecked()) {
+                                    myRef.setValue("Student");
+                                }
                                 signIn();
                             }
                         }
