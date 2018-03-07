@@ -27,10 +27,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_chat:
 
+                case R.id.navigation_chat:
                     mTextMessage.setText(R.string.title_chat);
                     return true;
+                    
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);
                     return true;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mSelectedItem = item.getItemId();
 
         // uncheck the other items.
-        for (int i = 0; i< navigation.getMenu().size(); i++) {
+        for (int i = 0; i < navigation.getMenu().size(); i++) {
             MenuItem menuItem = navigation.getMenu().getItem(i);
             menuItem.setChecked(menuItem.getItemId() == item.getItemId());
         }
