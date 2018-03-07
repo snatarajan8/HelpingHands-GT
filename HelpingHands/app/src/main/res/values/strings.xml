@@ -27,4 +27,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="radio_button_student">Student</string>
     <string name="radio_button_advisor">Advisor</string>
+    <string name="notifications_message">You do not have any new notifications at this time</string>
+    <string name="inquiry_submit">Submit an inquiry.</string>
+    <string name="submit">Submit</string>
 </resources>

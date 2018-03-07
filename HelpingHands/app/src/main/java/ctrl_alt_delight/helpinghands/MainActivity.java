@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuWrapperFactory;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -92,7 +94,23 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                selectFragment(item);
+//                selectFragment(item);
+                Fragment selectedFragment = null;
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        selectedFragment = HomeFragment.newInstance();
+                        break;
+                    case R.id.navigation_chat:
+                        selectedFragment = MenuFragment.newInstance(getString(R.string.title_chat),
+                                getColorFromRes(R.color.color_chat));
+                        break;
+                    case R.id.navigation_notifications:
+                        selectedFragment = NotificationsFragment.newInstance();
+                        break;
+                }
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.commit();
                 return true;
             }
         });
