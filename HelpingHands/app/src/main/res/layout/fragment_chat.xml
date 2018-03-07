@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ctrl_alt_delight.helpinghands.ChatFragment">
+
+    <EditText
+        android:id="@+id/inquiry_text"
+        android:layout_height="150dp"
+        android:hint="@string/inquiry_submit"
+        android:inputType="textLongMessage"
+        android:layout_width="fill_parent"
+        android:layout_gravity="bottom"
+        />
+
+    <Button
+        android:id="@+id/send_feedback_button"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:layout_width="fill_parent"
+        android:layout_gravity="bottom"
+        android:layout_alignBottom="@+id/inquiry_text" />
+
+</RelativeLayout>
