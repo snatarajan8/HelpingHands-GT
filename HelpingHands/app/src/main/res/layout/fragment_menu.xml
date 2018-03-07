@@ -20,13 +20,16 @@
         android:layout_height="150dp"
         android:hint="Submit an inquiry."
         android:inputType="textLongMessage"
-        android:layout_width="fill_parent" />
+        android:layout_width="fill_parent"
+        android:layout_gravity="bottom"
+        />
 
     <Button
         android:id="@+id/ButtonSendFeedback"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:layout_width="fill_parent"
+        android:layout_gravity="bottom"
         android:layout_alignBottom="@+id/inquiry_text" />
 
 </RelativeLayout>

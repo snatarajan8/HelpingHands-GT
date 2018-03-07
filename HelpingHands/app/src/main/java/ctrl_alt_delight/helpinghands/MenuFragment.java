@@ -43,7 +43,18 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        // return inflater.inflate(R.layout.fragment_menu, container, false);
+        View tmp = inflater.inflate(R.layout.fragment_menu, container, false);
+        /*container.removeView(tmp.findViewById(R.id.message1));
+        container.removeView(tmp.findViewById(R.id.message2));
+        container.get*/
+        for (int i = 0; i < container.getChildCount(); i++) {
+            View v = container.getChildAt(i);
+            if (v.getId() == R.id.message1 || v.getId() == R.id.message2) {
+                v.setVisibility(View.GONE);
+            }
+        }
+        return tmp;
     }
 
     @Override
@@ -60,13 +71,23 @@ public class MenuFragment extends Fragment {
             mColor = savedInstanceState.getInt(ARG_COLOR);
         }
 
+
+        mTextView = (TextView) view.findViewById(R.id.text);
+
         // initialize views
         if (!mText.equals("Chat")) {
             mContent = view.findViewById(R.id.fragment_content);
-            mTextView = (TextView) view.findViewById(R.id.text);
         } else {
+            ViewGroup container = (ViewGroup) view;
+            for (int i = 0; i < container.getChildCount(); i++) {
+                View v = container.getChildAt(i);
+                if (v.getId() == R.id.message1 || v.getId() == R.id.message2) {
+                    v.setVisibility(View.GONE);
+                }
+            }
+
+
             mContent = view.findViewById(R.id.ButtonSendFeedback);
-            mTextView = (TextView) view.findViewById(R.id.text);
             mContent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -79,7 +100,8 @@ public class MenuFragment extends Fragment {
 
         // set text and background color
         mTextView.setText(mText);
-        mContent.setBackgroundColor(mColor);
+
+        //mContent.setBackgroundColor(mColor);
     }
 
     @Override
