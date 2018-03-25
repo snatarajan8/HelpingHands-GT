@@ -30,4 +30,23 @@
     <string name="notifications_message">You do not have any new notifications at this time</string>
     <string name="inquiry_submit">Submit an inquiry.</string>
     <string name="submit">Submit</string>
+
+
+    <string name="one">SD</string>
+    <integer name="int1">1</integer>
+    <string name="two">D</string>
+    <integer name="int2">2</integer>
+    <string name="three">N</string>
+    <integer name="int3">3</integer>
+    <string name="four">A</string>
+    <integer name="int4">4</integer>
+    <string name="five">SA</string>
+    <integer name="int5">5</integer>
+
+    <string name="question1">In the past two weeks, I have felt down, depressed, and hopeless.</string>
+    <string name="question2">I generally feel well rested on most weekdays.</string>
+    <string name="question3">I frequently have thoughts about suicide.</string>
+    <string name="question4">I have friend(s) to turn to when I am feeling down.</string>
+
+    <string name="action_submit_survey">Submit</string>
 </resources>

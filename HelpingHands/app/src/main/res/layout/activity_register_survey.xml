@@ -1,0 +1,251 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ctrl_alt_delight.helpinghands.RegisterActivity">
+
+    <TextView
+        android:id="@+id/question1"
+        android:layout_width="326dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/question1" />
+
+    <RadioGroup
+        android:id="@+id/radioAnswers1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- 1st answer radio button-->
+        <RadioButton
+            android:id="@+id/radio1A1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/one"
+            android:tag="@integer/int1" />
+
+        <!-- 2nd answer radio button-->
+        <RadioButton
+            android:id="@+id/radio1A2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/two"
+            android:tag="@integer/int2" />
+
+        <!-- 3rd answer radio button-->
+        <RadioButton
+            android:id="@+id/radio1A3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/three"
+            android:tag="@integer/int3" />
+
+        <!-- 4th answer radio button-->
+        <RadioButton
+            android:id="@+id/radio1A4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/four"
+            android:tag="@integer/int4" />
+
+        <!-- 5th answer radio button-->
+        <RadioButton
+            android:id="@+id/radio1A5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/five"
+            android:tag="@integer/int5" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/question2"
+        android:layout_width="326dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/question2" />
+
+    <RadioGroup
+        android:id="@+id/radioAnswers2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- 1st answer radio button-->
+        <RadioButton
+            android:id="@+id/radio2A1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/one"
+            android:tag="@integer/int1" />
+
+        <!-- 2nd answer radio button-->
+        <RadioButton
+            android:id="@+id/radio2A2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/two"
+            android:tag="@integer/int2" />
+
+        <!-- 3rd answer radio button-->
+        <RadioButton
+            android:id="@+id/radio2A3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/three"
+            android:tag="@integer/int3" />
+
+        <!-- 4th answer radio button-->
+        <RadioButton
+            android:id="@+id/radio2A4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/four"
+            android:tag="@integer/int4" />
+
+        <!-- 5th answer radio button-->
+        <RadioButton
+            android:id="@+id/radio2A5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/five"
+            android:tag="@integer/int5" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/question3"
+        android:layout_width="326dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/question3" />
+
+    <RadioGroup
+        android:id="@+id/radioAnswers3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- 1st answer radio button-->
+        <RadioButton
+            android:id="@+id/radio3A1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/one"
+            android:tag="@integer/int1" />
+
+        <!-- 2nd answer radio button-->
+        <RadioButton
+            android:id="@+id/radio3A2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/two"
+            android:tag="@integer/int2" />
+
+        <!-- 3rd answer radio button-->
+        <RadioButton
+            android:id="@+id/radio3A3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/three"
+            android:tag="@integer/int3" />
+
+        <!-- 4th answer radio button-->
+        <RadioButton
+            android:id="@+id/radio3A4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/four"
+            android:tag="@integer/int4" />
+
+        <!-- 5th answer radio button-->
+        <RadioButton
+            android:id="@+id/radio3A5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/five"
+            android:tag="@integer/int5" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/question4"
+        android:layout_width="326dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/question4" />
+
+    <RadioGroup
+        android:id="@+id/radioAnswers4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- 1st answer radio button-->
+        <RadioButton
+            android:id="@+id/radioA1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/one"
+            android:tag="@integer/int1" />
+
+        <!-- 2nd answer radio button-->
+        <RadioButton
+            android:id="@+id/radioA2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/two"
+            android:tag="@integer/int2" />
+
+        <!-- 3rd answer radio button-->
+        <RadioButton
+            android:id="@+id/radioA3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/three"
+            android:tag="@integer/int3" />
+
+        <!-- 4th answer radio button-->
+        <RadioButton
+            android:id="@+id/radioA4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/four"
+            android:tag="@integer/int4" />
+
+        <!-- 5th answer radio button-->
+        <RadioButton
+            android:id="@+id/radioA5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/five"
+            android:tag="@integer/int5" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/survey_submit_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/action_submit_survey"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

@@ -63,6 +63,12 @@ public class RegisterActivity extends Activity {
     RadioButton adviserRadio;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+    RadioGroup radioAnswers1;
+    RadioGroup radioAnswers2;
+    RadioGroup radioAnswers3;
+    RadioGroup radioAnswers4;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,10 +171,41 @@ public class RegisterActivity extends Activity {
 //                                }
                                 if (adviserRadio.isChecked()) {
                                     myRef.setValue("Adviser");
+                                    signIn();
                                 } else if (studentRadio.isChecked()) {
                                     myRef.setValue("Student");
+                                    //do survey stuff here
+                                    setContentView(R.layout.activity_register_survey);
+                                    radioAnswers1 = (RadioGroup) findViewById(R.id.radioAnswers1);
+                                    radioAnswers2 = (RadioGroup) findViewById(R.id.radioAnswers2);
+                                    radioAnswers3 = (RadioGroup) findViewById(R.id.radioAnswers3);
+                                    radioAnswers4 = (RadioGroup) findViewById(R.id.radioAnswers4);
+
+                                    mEmailView = (EditText) findViewById(R.id.email);
+                                    mPasswordView = (EditText) findViewById(R.id.password);
+
+                                    Button surveySubmitButton = (Button) findViewById(R.id.survey_submit_button);
+                                    surveySubmitButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            RadioButton checkedButton1 = (RadioButton) findViewById(radioAnswers1.getCheckedRadioButtonId());
+                                            RadioButton checkedButton2 = (RadioButton) findViewById(radioAnswers2.getCheckedRadioButtonId());
+                                            RadioButton checkedButton3 = (RadioButton) findViewById(radioAnswers3.getCheckedRadioButtonId());
+                                            RadioButton checkedButton4 = (RadioButton) findViewById(radioAnswers4.getCheckedRadioButtonId());
+
+                                            int risk = calculateRisk(
+                                                    Integer.parseInt(checkedButton1.getTag().toString()),
+                                                    Integer.parseInt(checkedButton2.getTag().toString()),
+                                                    Integer.parseInt(checkedButton3.getTag().toString()),
+                                                    Integer.parseInt(checkedButton4.getTag().toString())
+                                            );
+
+                                            myRef.child("risk_score").setValue(risk);
+                                            signIn();
+                                        }
+                                    });
                                 }
-                                signIn();
+
                             }
                         }
                     });
@@ -185,6 +222,18 @@ public class RegisterActivity extends Activity {
         Intent intent = new Intent(RegisterActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
+
+    private int calculateRisk(int depressed, int sleep, int suicide, int support) {
+        int score = 0;
+        score += depressed;
+        score -= sleep;
+        score += (suicide > 3) ? 20 : suicide;
+        score -= support;
+
+        return score;
+
+    }
+
 
     private boolean isEmailValid(String email) {
         //TODO
